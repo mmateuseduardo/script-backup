@@ -1,5 +1,5 @@
-Scripts Backup
+Scripts Backup Cisco
 
-Essa área vai ser destinadas a ferrementas de backups feitas em python.
-Informo que nem todas as ferramentas (scripts) nesse local podem ser feitas por mim, as vezes é algum script que uso no meu dia a dia e estou compartilhando com todas.
-Todos os scripts contidos aqui, que não foram desenvolvidor por mim vai ter os creditos.
+Esse script foi desenvolvido pela NIC.br... estou apenas compartilhando, futuramente estarei disponobilizando algumas melhoras.
+
+Atenção... Ao utilizar esse script em seu router cisco é recomendado usar um usuário somente leitura para realizar o backup.
