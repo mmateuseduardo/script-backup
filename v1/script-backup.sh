@@ -95,19 +95,21 @@ Diretorio(){
         printf "\n${Yellow} [ Selecione uma opção para continuar ]\n\n"
         printf " ${Red}[${Blue}1${Red}] ${Green}Backup de Diretórios\n"
         printf " ${Red}[${Blue}2${Red}] ${Green}Backup DNS Server\n"
-        printf " ${Red}[${Blue}3${Red}] ${Green}Backup FastNetmon\n"
-        printf " ${Red}[${Blue}4${Red}] ${Green}Backup SpeedTest/Minha Conexão\n"
-        printf " ${Red}[${Blue}5${Red}] ${Green}Voltar ao Menu Principal\n"
-        printf " ${Red}[${Blue}6${Red}] ${Green}Exit\n\n"
+        printf " ${Red}[${Blue}3${Red}] ${Green}Backup WebSite\n"
+        printf " ${Red}[${Blue}4${Red}] ${Green}Backup FastNetmon\n"
+        printf " ${Red}[${Blue}5${Red}] ${Green}Backup SpeedTest/Minha Conexão\n"
+        printf " ${Red}[${Blue}6${Red}] ${Green}Voltar ao Menu Principal\n"
+        printf " ${Red}[${Blue}7${Red}] ${Green}Exit\n\n"
         printf "${Green}┌─[${Red}Selecione uma Opção${Green}]──[${Red}~${Green}]─[${Yellow}Menu${Green}]:\n"
         read -p "└──►$(tput setaf 7) " opcao_var
         case $opcao_var in
         1) 1D ;;
         2) DNS ;;
-        3) FastNetMon ;;
+        3) WebSite ;;
+        4) FastNetMon ;;
         4) SpeedTest ;;
         5) Menu ;;
-        6) Exit ;;
+        7) Exit ;;
         *)printf "${White}[${Red}Error${White}] Selecione uma opção Correta...\n\n" ; Diretorio ;;
 esac
 }
@@ -119,7 +121,6 @@ esac
         touch /backup/d/d.telegram.sh
         chmod a+x  /backup/d/d.telegram.sh
         ls -lah /backup/*
-        echo "!/bin/bash" > diretoriotexto.txt
         printf "\n${Blue}Informe a quantidade de  Diretório: "
         read dir
         x=1
@@ -136,12 +137,32 @@ esac
         x=$(( $x + 1 ))
 done
         #printf "\n${White}POR PADRÃO ESSE ESCRIPT RODA UMA VEZ POR SEMANA, DESEJA EFETUAR ALTERAÇÃO ???"
-        printf "\n${RED}ESSA ALTERAÇÃO PODE SER EFETUADA NO ARQUIVO /var/spool/cron/crontabs/root..."
+        #printf "\n${RED}ESSA ALTERAÇÃO PODE SER EFETUADA NO ARQUIVO /var/spool/cron/crontabs/root..."
         grep -q /backup/d/d.telegram.sh /var/spool/cron/crontabs/root || echo "10 10 * 1 * /backup/d/d.telegram.sh " >> /var/spool/cron/crontabs/root
         cat /backup/d/d.telegram.sh
         printf "\n${Blue}PARA TESTE FOI ENVIADO UM BACKUP AO SEU TELEGRAM, POR FAVOR VERIFIQUE\n"
+        /backup/d/d.telegram.sh
         menu
 }
+        WebSite(){
+        printf "\n[${Green}Selected${White}] Option 3 Backup WebSite...\n"
+        printf "\n${Red}Criado Diretório /backup/web/ e o Script ${Green}para armazenar as informações\n\n"
+        mkdir -p /backup/web/
+        touch /backup/web/w.telegram.sh
+        chmod a+x  /backup/web/w.telegram.sh
+        ls -lah /backup/*
+        printf "\n${Red}==================================================================================\n"
+        echo "/bin/telegram -f \""$ID"\" \"/var/www/*\" \"web\" \"PASTA COMPLETA DO APACHE\"" >> /backup/web/w.telegram.sh
+        #printf "\n${White}POR PADRÃO ESSE ESCRIPT RODA UMA VEZ POR SEMANA, DESEJA EFETUAR ALTERAÇÃO ???"
+        #printf "\n${RED}ESSA ALTERAÇÃO PODE SER EFETUADA NO ARQUIVO /var/spool/cron/crontabs/root..."
+        grep -q /backup/w/w.telegram.sh /var/spool/cron/crontabs/root || echo "10 10 * 1 * /backup/w/w.telegram.sh " >>  /var/spool/cron/crontabs/root
+        cat /backup/web/w.telegram.sh
+        printf "\n${Blue}PARA TESTE FOI ENVIADO UM BACKUP AO SEU TELEGRAM, POR FAVOR VERIFIQUE\n"
+        /backup/web/w.telegram.sh
+        menu
+}
+
+
 ##### Exit < TESTED OK
         Exit (){
         printf "${Red}\nObrigado por usar o Scirpt ${White}:)\n\n"
