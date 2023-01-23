@@ -94,9 +94,9 @@ Diretorio(){
         printf "\n[${Green}Selected${White}] Opção 3 - Backup De Diretório...\n\n"
         printf "\n${Yellow} [ Selecione uma opção para continuar ]\n\n"
         printf " ${Red}[${Blue}1${Red}] ${Green}Backup de Diretórios\n"
-        printf " ${Red}[${Blue}2${Red}] ${Green}Backup DNS Server\n"
+        printf " ${Red}[${Blue}2${Red}] ${Green}Backup DNS Server - BIND9\n"
         printf " ${Red}[${Blue}3${Red}] ${Green}Backup WebSite\n"
-        printf " ${Red}[${Blue}4${Red}] ${Green}Backup FastNetmon\n"
+        printf " ${Red}[${Blue}4${Red}] ${Green}Backup FastNetMon\n"
         printf " ${Red}[${Blue}5${Red}] ${Green}Backup SpeedTest/Minha Conexão\n"
         printf " ${Red}[${Blue}6${Red}] ${Green}Voltar ao Menu Principal\n"
         printf " ${Red}[${Blue}7${Red}] ${Green}Exit\n\n"
@@ -113,8 +113,9 @@ Diretorio(){
         *)printf "${White}[${Red}Error${White}] Selecione uma opção Correta...\n\n" ; Diretorio ;;
 esac
 }
+##### BACKUP DE DIVERSOS DIRETORIOS < TESTED OK
         1D(){
-        printf "\n[${Green}Selected${White}] Option 1 Backup De Diretório...\n"
+        printf "\n[${Green}Selected${White}] Opção 1 - Backup De Diretório...\n"
         printf "${White}Informe o Diretorio para Backup, insira o Caminho Completo Ex: /var/log/*"
         printf "\n${Red}Criado Diretório /backup/D/ e o Script ${Green}para armazenar as informações\n\n"
         mkdir -p /backup/d/
@@ -144,25 +145,68 @@ done
         /backup/d/d.telegram.sh
         menu
 }
+##### DNS < TESTED OK
+        DNS(){
+        printf "\n[${Green}Selected${White}] Opção 2 - Backup DNS...\n"
+        printf "\n${Red}Criado Diretório /backup/dns/ e o Script ${Green}para armazenar as informações\n\n"
+        mkdir -p /backup/dns/
+        touch /backup/dns/dns.telegram.sh
+        chmod a+x  /backup/dns/dns.telegram.sh
+        ls -lah /backup/*
+        printf "${White}Informe um nome para o Arquivo de Backup: "
+        read nome
+        printf "${White}Informe um "Comentário": "
+        read comentario
+        printf "\n${Red}==================================================================================\n"
+        echo "/bin/telegram -f \""$ID"\" \""/etc/bind/* /usr/share/dns/* /var/cache/bind/*"\" \""$nome"\" \""$comentario"\"" >> /backup/dns/dns.telegram.sh
+        grep -q /backup/dns/dns.telegram.sh /var/spool/cron/crontabs/root || echo "10 10 * 1 * /backup/dns/dns.telegram.sh " >>  /var/spool/cron/crontabs/root
+        cat /backup/dns/dns.telegram.sh
+        printf "\n${Blue}PARA TESTE FOI ENVIADO UM BACKUP AO SEU TELEGRAM, POR FAVOR VERIFIQUE\n"
+        /backup/dns/dns.telegram.sh
+        menu
+
+}
+##### WEBISTE < TESTED OK
         WebSite(){
-        printf "\n[${Green}Selected${White}] Option 3 Backup WebSite...\n"
+        printf "\n[${Green}Selected${White}] Opção 3 - Backup WebSite...\n"
         printf "\n${Red}Criado Diretório /backup/web/ e o Script ${Green}para armazenar as informações\n\n"
         mkdir -p /backup/web/
         touch /backup/web/w.telegram.sh
         chmod a+x  /backup/web/w.telegram.sh
         ls -lah /backup/*
+        printf "${White}Informe um nome para o Arquivo de Backup: "
+        read nome
+        printf "${White}Informe um "Comentário": "
+        read comentario
         printf "\n${Red}==================================================================================\n"
-        echo "/bin/telegram -f \""$ID"\" \"/var/www/*\" \"web\" \"PASTA COMPLETA DO APACHE\"" >> /backup/web/w.telegram.sh
-        #printf "\n${White}POR PADRÃO ESSE ESCRIPT RODA UMA VEZ POR SEMANA, DESEJA EFETUAR ALTERAÇÃO ???"
-        #printf "\n${RED}ESSA ALTERAÇÃO PODE SER EFETUADA NO ARQUIVO /var/spool/cron/crontabs/root..."
+        echo "/bin/telegram -f \""$ID"\" \""/var/www/* /etc/apache2/sites-available/*"\" \""$nome"\" \""$comentario"\"" >> /backup/web/w.telegram.sh
         grep -q /backup/w/w.telegram.sh /var/spool/cron/crontabs/root || echo "10 10 * 1 * /backup/w/w.telegram.sh " >>  /var/spool/cron/crontabs/root
         cat /backup/web/w.telegram.sh
         printf "\n${Blue}PARA TESTE FOI ENVIADO UM BACKUP AO SEU TELEGRAM, POR FAVOR VERIFIQUE\n"
         /backup/web/w.telegram.sh
         menu
+
 }
-
-
+##### FASTNETMON < TESTED - NAO EFETUADO
+        FastNetMon(){
+        printf "\n[${Green}Selected${White}] Opção 4 - Backup FastNetMon...\n"
+        printf "\n${Red}Criado Diretório /backup/dns/ e o Script ${Green}para armazenar as informações\n\n"
+        mkdir -p /backup/fastnetmon/
+        touch /backup/fastnetmon/fastnetmon.telegram.sh
+        chmod a+x  /backup/fastnetmon/fastnetmon.telegram.sh
+        ls -lah /backup/*
+        printf "${White}Informe um nome para o Arquivo de Backup: "
+        read nome
+        printf "${White}Informe um "Comentário": "
+        read comentario
+        printf "\n${Red}==================================================================================\n"
+        echo "/bin/telegram -f \""$ID"\" \""/etc/fastnetmon.conf /etc/networks_list /usr/local/bin/telegram.conf/token.conf /var/log/fastnetmon_attacks/* /etc/exabgp.conf /etc/init.d/exabgp /lib/systemd/system/exabgp.service"\" \""$nome"\" \""$comentario"\"" >> /backup/fastnetmon/fastnetmon.telegram.sh
+        grep -q /backup/fasnetmon/fasnetmon.telegram.sh /var/spool/cron/crontabs/root ||  echo "10 10 * 1 * /backup/fasnetmon/fasnetmon.telegram.sh " >> /var/spool/cron/crontabs/root
+        cat /backup/fastnetmon/fastnetmon.telegram.sh
+        printf "\n${Blue}PARA TESTE FOI ENVIADO UM BACKUP AO SEU TELEGRAM, POR FAVOR VERIFIQUE\n"
+        /backup/fastnetmon/fastnetmon.telegram.sh
+        menu
+}
 ##### Exit < TESTED OK
         Exit (){
         printf "${Red}\nObrigado por usar o Scirpt ${White}:)\n\n"
