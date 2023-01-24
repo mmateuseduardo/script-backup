@@ -1,4 +1,4 @@
-## <p align="center">config.install.sh :)
+## <p align="center">script.backup.sh :)
 <p align="center">💻🐧 O principal objetivo desta ferramenta é automatizar a configuração do IPTABLES + SSH + FAIL2BAN + LOG no Linux.
 <align="center"><br><br>
 <img src="https://github.com/mmateuseduardo/Facilities/blob/main/config-security/img/01.PNG"/>
