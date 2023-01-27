@@ -28,7 +28,7 @@ chmod +x script.backup.sh
 <h3>[1]</h3>
 - Verifica Dependencias<br>
 - Configura Usuário ou Grupo de Telegram<br>
-- Backup de Diretório e Diretórios Pré Definidos
+- Backup de Diretório e Diretórios Pré Definidos<br>
 - Backup de Banco de Dados e Banco de Dados Pré Definidos - EM DESENVOLVIMENTO
 <h3>[2]</h3>
 - Backup de Diretório<br>
