@@ -27,9 +27,10 @@ chmod +x script.backup.sh
 ```
 ## 🛠️ Tools - 2 MENU<br>
 <h3>[1]</h3>
-- Verifica Dependencias - Não Disponível.<br>
-- Instala e Configura IPTABLES + SSH<br>
-- Limpa as Configuração de IPTABLES
+- Verifica Dependencias<br>
+- Configura Usuário ou Grupo de Telegram<br>
+- Backup de Diretorio
+- Backup de Banco de Dados
 <h3>[2]</h3>
 - Instala e Configura IPTABLES<br>
 - Libera Protocolos do Tipo Publico TCP/UDP<br>
