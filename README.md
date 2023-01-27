@@ -1,11 +1,11 @@
 ## <p align="center">script.backup.sh :)
-<p align="center">💻🐧 O principal objetivo desta ferramenta é automatizar a configuração do IPTABLES + SSH + FAIL2BAN + LOG no Linux.
+<p align="center">💻🐧 O principal objetivo desta ferramenta é automatizar a de backup do seu ambiente Linux, os backups realizado por essa ferramenta são desde simples arquivos até mesmo diretorios e banco de dados em mysql/mariadb.
 <align="center"><br><br>
 <img src="https://github.com/mmateuseduardo/Facilities/blob/main/config-security/img/01.PNG"/>
 <img height="300" width="588"  src="https://github.com/mmateuseduardo/Facilities/blob/main/config-security/img/02.PNG"/>
 
 ## Sobre<br>
-Este SCRIPT (Linux) está sendo desenvolvido com o objetivo de facilitar a configuração de SSH-IPTABLEs-FAIL2BAN com LOG.<br><br>
+Este SCRIPT (Linux) está sendo desenvolvido com o objetivo de facilitar a configuração de rotinas de backup. Essas rotinas de backup até o momento foram configurada para realizar backup de arquivos diretorios e banco de dados, todos os backups são enviados para seu usuário ou grupo do telegram.<br><br>
 
 Observação: Parte das configuração aplicada estou retirando de projetos publicado na internet, como por exemplo o script de telegram que foi desenvolvido e fornecido pelo blog do remonti. Segue abaixo os links caso queira utilizar somente a regras de iptables a parte.<br>
 https://blog.remontti.com.br/tag/shell-script<br>
