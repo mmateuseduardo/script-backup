@@ -190,7 +190,7 @@ done
 ##### FASTNETMON < TESTED - NAO EFETUADO
         FastNetMon(){
         printf "\n[${Green}Selected${White}] Opção 4 - Backup FastNetMon...\n"
-        printf "\n${Red}Criado Diretório /backup/dns/ e o Script ${Green}para armazenar as informações\n\n"
+        printf "\n${Red}Criado Diretório /backup/fastnetmon/ e o Script ${Green}para armazenar as informações\n\n"
         mkdir -p /backup/fastnetmon/
         touch /backup/fastnetmon/fastnetmon.telegram.sh
         chmod a+x  /backup/fastnetmon/fastnetmon.telegram.sh
